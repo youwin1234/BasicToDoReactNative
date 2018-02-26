@@ -1,14 +1,13 @@
-//import stuff
+//imported things
 import React from 'react';
 import {View,Text,TextInput,Button,Alert,AppRegistry,StyleSheet} from 'react-native';
 
 
-//create stuff
+//functions 
 class App extends React.Component{
   state = {
     text: "",
-    todo: []
-
+    t
   }
   addTodo = () =>{
     var newTodo = this.state.text;
@@ -22,7 +21,6 @@ class App extends React.Component{
     var pos = arr.indexOf(t);
     arr.splice(pos,1);
     this.setState({todo: arr});
-
   }
   renderTodos = () =>{
     return this.state.todo.map(t=>{
@@ -33,20 +31,24 @@ class App extends React.Component{
         )
     })
   }
+  //rendering of app components
   render(){
     return(
       <View style={styles.viewStyle}>
         <Text style ={styles.header}>Type to add a To-Do and Tap to remove</Text>
+        {/*Takes user input and saves what user types inside array once button is clicked.*/}
         <TextInput
           style={styles.inputStyle}
           onChangeText={(text)=>this.setState({text})}
           value = {this.state.text}
         />
+      {/* Adds items to array.*/}
        <Button
         title="Add a To-Do"
-        color = "green"
+        color = "#650288"
         onPress={this.addTodo}
        />
+       {/* Renders array below the button that adds them.*/}
        {this.renderTodos()}
       </View>
       )
@@ -69,13 +71,12 @@ const styles = {
   },
   header:{
     fontSize: 20,
-    color: 'green',
+    color: "#650288",
     fontWeight: 'bold'
   },
   ReturnedToDos:{
     margin: 5
   }
 }
-
-//export stuff
+//exported 
 export default App;
