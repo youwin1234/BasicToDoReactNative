@@ -7,7 +7,7 @@ import {View,Text,TextInput,Button,Alert,AppRegistry,StyleSheet} from 'react-nat
 class App extends React.Component{
   state = {
     text: "",
-    t
+    t=[]
   }
   addTodo = () =>{
     var newTodo = this.state.text;
