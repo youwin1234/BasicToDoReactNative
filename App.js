@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text,TextInput,Button,Alert,AppRegistry,StyleSheet} from 'react-native';
+import {View,Text,TextInput,Button,Alert,AppRegistry,StyleSheet,TouchableOpacity} from 'react-native';
 
 class App extends React.Component{
   state = {
@@ -23,36 +23,44 @@ class App extends React.Component{
   }
   renderTodos = () =>{
     return this.state.todo.map(t=>{
-      return (<Text style={styles.ReturnedToDos} 
-        key={t}
+      return (
+      <TouchableOpacity key={t}>
+        <Text style={styles.ReturnedToDos}
         onPress={()=>this.removeTodo(t)}
         >{t}</Text>
+        </TouchableOpacity>
         )
     })
   }
   render(){
     return(
-      <View style={styles.viewStyle}>
-        <Text style ={styles.header}>Type to add a To-Do and Tap to remove</Text>
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text)=>this.setState({text})}
-          value = {this.state.text}
+      <View style={styles.wholeStyle}>
+        <View style={styles.viewStyle}>
+          <Text style ={styles.header}>Type to add a To-Do and Tap to remove</Text>
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text)=>this.setState({text})}
+            value = {this.state.text}
+          />
+        <Button
+          title="Add a To-Do"
+          color = "#650288"
+          onPress={this.addTodo}
         />
-       <Button
-        title="Add a To-Do"
-        color = "#650288"
-        onPress={this.addTodo}
-       />
-       {this.renderTodos()}
+        {this.renderTodos()}
+        </View>
       </View>
       )
   }
 }
 
 const styles = {
+  wholeStyle:{
+    backgroundColor: 'skyblue',
+    flex:1
+  },
   viewStyle: {
-    marginTop: 30,
+    marginTop: 45,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'skyblue'
@@ -70,7 +78,9 @@ const styles = {
     fontWeight: 'bold'
   },
   ReturnedToDos:{
-    margin: 5
+    margin: 5,
+    fontSize: 15,
+    color:'#650288'
   }
 }
 
